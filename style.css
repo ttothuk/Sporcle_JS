@@ -10,6 +10,10 @@ body{
     margin-bottom: 20px;
 }
 
+#insert{
+    color: #fff;
+    display: inline-block;
+}
 
 
 .inputField {
