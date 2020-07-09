@@ -1,20 +1,11 @@
-
-
-//const a = document.getElementById("worldsvg");
-
 // It's important to add an load event listener to the object,
 // as it will load the svg doc asynchronously
-window.addEventListener(
-  "load",
-  function () {
+window.addEventListener("load", function () {
     const a = document.getElementById("worldsvg");
     // get the inner DOM of the svg file (note it will only if served from a server)
     var svgDoc = a.contentDocument;
     // get all elements
     let countries = svgDoc.getElementsByTagName("path");
-    let countVariable = svgDoc.querySelector('.countClass');
-    let countVariable2 = a.querySelector('.countClass');
-    
     
 
     // Set a serach bar listener to compare against the countries array
@@ -26,6 +17,7 @@ window.addEventListener(
     console.log(countries.length);
 
     let counting = 0;
+    let tmb = new Array();
 
     function checkValue(event) {
       let value = event.target.value.toLowerCase();
@@ -35,17 +27,18 @@ window.addEventListener(
         let currCountryName = countries[i].getAttribute('title').toLowerCase()
         
         //let currCountryId = countries[i].getAttribute('id').toLowerCase()
-        if (value === currCountryName /*|| value === currCountryId*/) {
+        if (value === currCountryName && !tmb.includes(value) /*|| value === currCountryId*/) {
           
           countries[i].setAttribute("fill", "red");
           counting++;
-          document.getElementById("insert").innerHTML = counting + "/256";
+          document.getElementById("insert").innerHTML = counting + "/" + countries.length;
 
+          tmb.push(value);
+          console.log(tmb);
 
           console.log(value + " " + i + " " + counting);
           this.value = "";
-        }
-        
+        }        
       }
     }
   },
